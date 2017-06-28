@@ -4,17 +4,25 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TreeApp"
+        xmlns:self="clr-namespace:TreeApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <DockPanel Margin="10">
         <TreeView Name="trvPersons" Width="150" MouseLeftButtonUp="trvPersons_MouseLeftButtonUp">
-            <TreeView.ItemTemplate>
-                <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+            <TreeView.Resources>
+                <HierarchicalDataTemplate DataType="{x:Type self:Family}" ItemsSource="{Binding Members}">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Name}" Margin="0,0,4,0" />
+                        <Image Source="/TreeApp;component/Images/folder.png" Width="35" Height="30" />
+                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
                     </StackPanel>
                 </HierarchicalDataTemplate>
-            </TreeView.ItemTemplate>
+                <DataTemplate DataType="{x:Type self:FamilyMember}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/TreeApp;component/Images/file.png" Width="30" Height="30" />
+                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+                    </StackPanel>
+                </DataTemplate>
+            </TreeView.Resources>
             <TreeView.ItemContainerStyle>
                 <Style TargetType="TreeViewItem">
                     <Setter Property="IsSelected" Value="{Binding IsSelected}" />

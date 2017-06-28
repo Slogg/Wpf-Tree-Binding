@@ -25,28 +25,24 @@ namespace TreeApp
         public MainWindow()
         {
             InitializeComponent();
-            List<Person> persons = new List<Person>();
-            Person person1 = new Person() { Name = "John Doe", Age = 42 };
+            List<Family> families = new List<Family>();
 
-            Person person2 = new Person() { Name = "Jane Doe", Age = 39 };
+            Family family1 = new Family() { Name = "The Doe's" };
+            family1.Members.Add(new FamilyMember() { Name = "John Doe"});
+            family1.Members.Add(new FamilyMember() { Name = "Jane Doe" });
+            family1.Members.Add(new FamilyMember() { Name = "Sammy Doe"});
+            families.Add(family1);
 
-            Person child1 = new Person() { Name = "Sammy Doe", Age = 13 };
-            Person child3 = new Person() { Name = "Samm Doe", Age = 13 };
-            person1.Children.Add(child1);
-            person2.Children.Add(child3);
+            Family family2 = new Family() { Name = "The Moe's" };
+            family2.Members.Add(new FamilyMember() { Name = "Mark Moe" });
+            family2.Members.Add(new FamilyMember() { Name = "Norma Moe" });
+            families.Add(family2);
 
-            person2.Children.Add(new Person() { Name = "Jenny Moe", Age = 17 });
-
-            Person person3 = new Person() { Name = "Becky Toe", Age = 25 };
-
-            persons.Add(person1);
-            persons.Add(person2);
-            persons.Add(person3);
 
             //person2.IsExpanded = true;
             //person2.IsSelected = true;
 
-            trvPersons.ItemsSource = persons;
+            trvPersons.ItemsSource = families;
         }
 
 
@@ -54,14 +50,14 @@ namespace TreeApp
         {
             if (trvPersons.SelectedItem != null)
             {
-                var list = (trvPersons.ItemsSource as List<Person>);
+                var list = (trvPersons.ItemsSource as List<Family>);
                 for (int i = 0; i < list.Count; i++)
                 {
-                    int curIndex = list[i].Children.IndexOf(trvPersons.SelectedItem as Person);
+                    int curIndex = list[i].Members.IndexOf(trvPersons.SelectedItem as FamilyMember);
                     if(curIndex>=0)
                     {
                         Page1 page = new Page1();
-                        MessageBox.Show(list[i].Children[curIndex].Name);
+                        MessageBox.Show(list[i].Members[curIndex].Name);
                        
                         frameWin.Content = page.Page1ForWin;
                         return;
@@ -72,18 +68,22 @@ namespace TreeApp
         }
     }
 
-    public class Person : TreeViewItemBase
+    public class Family : TreeViewItemBase
     {
-        public Person()
+        public Family()
         {
-            this.Children = new ObservableCollection<Person>();
+            this.Members = new ObservableCollection<FamilyMember>();
         }
 
         public string Name { get; set; }
 
-        public int Age { get; set; }
+        public ObservableCollection<FamilyMember> Members { get; set; }
+    }
 
-        public ObservableCollection<Person> Children { get; set; }
+    public class FamilyMember
+    {
+        public string Name { get; set; }
+
     }
 
     public class TreeViewItemBase : INotifyPropertyChanged
