@@ -9,6 +9,14 @@
       Title="Page1">
 
     <Grid x:Name="Page1ForWin">
-        <TextBlock>Текст обычный</TextBlock>
+        <GroupBox Header="Какой-то заголовок">
+            <TextBlock><Run Text="Текст обычный"/><InlineUIContainer>
+                <TreeView x:Name="treeView" Height="100" Width="100"/>
+            </InlineUIContainer><InlineUIContainer>
+                <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" Text="TextBox" Width="120"/>
+            </InlineUIContainer><InlineUIContainer>
+                <Button x:Name="button" Content="Button" Width="75"/>
+            </InlineUIContainer></TextBlock>
+        </GroupBox>
     </Grid>
 </Page>

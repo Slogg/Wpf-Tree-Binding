@@ -14,13 +14,14 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using MahApps.Metro.Controls;
 
 namespace TreeApp
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : MetroWindow
     {
         public MainWindow()
         {
@@ -56,9 +57,7 @@ namespace TreeApp
                     int curIndex = list[i].Members.IndexOf(trvPersons.SelectedItem as FamilyMember);
                     if(curIndex>=0)
                     {
-                        Page1 page = new Page1();
-                        MessageBox.Show(list[i].Members[curIndex].Name);
-                       
+                        Page1 page = new Page1();                       
                         frameWin.Content = page.Page1ForWin;
                         return;
                     }
