@@ -27,13 +27,14 @@
                     <TreeView.Resources>
                         <HierarchicalDataTemplate DataType="{x:Type self:Family}" ItemsSource="{Binding Members}">
                             <StackPanel Orientation="Horizontal">
-                                <iconPacks:PackIconMaterialLight Kind="Folder"  Width="25" Height="25" Margin="5"></iconPacks:PackIconMaterialLight>
+                                <!--<iconPacks:PackIconMaterialLight Kind="Folder"  Width="25" Height="25" Margin="5"></iconPacks:PackIconMaterialLight>-->
+                                <Image Source="Images/folder2.png" Width="25" Height="25" />
                                 <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
                             </StackPanel>
                         </HierarchicalDataTemplate>
                         <DataTemplate DataType="{x:Type self:FamilyMember}">
                             <StackPanel Orientation="Horizontal">
-                                <iconPacks:PackIconMaterialLight Kind="File"  Width="25" Height="25" Margin="5" ></iconPacks:PackIconMaterialLight>
+                                <Image Source="Images/file2.png" Width="25" Height="30" />
                                 <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
                             </StackPanel>
                         </DataTemplate>
